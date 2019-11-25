@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Imo.Home</title>
+		<link rel = "stylesheet" href="styles.css">
+		<link rel="stylesheet" href="topButton.css">
+		<link rel="stylesheet" href="dropdownButton.css">
+		<link rel="stylesheet" href="divDesign.css">
+		<link rel="stylesheet" href="paragraphDesign.css">
+		<link rel="stylesheet" href="contactImage.css">
+		<link rel="stylesheet" href="searchForm.css">
+		<script src="navbar_customizing.js"></script>
+		<script src="topButtonScript.js"></script>
+	</head>
+	<body onload="openDiv(event, 'Cauta')">
+		<div id="container">
+			<div id = "middle">
+				<div id="header"></div>
+				<div id="nav">
+					<ul>
+						<a ><li><div class="dropdown">
+							<a>Prima pagina</a>
+							<div class="dropdown-content">
+								<a class="tablinks" onclick="openDiv(event, 'Vezi anunturi')">Vezi anunturi</a>
+								<a class="tablinks" onclick="openDiv(event, 'Cauta')">Cauta</a>
+							</div>
+						</div></li></a>			
+						<a class="tablinks" onclick="openDiv(event, 'Adauga anunt')"><li>Adauga anunt</li></a>		
+						<a class="tablinks" onclick="openDiv(event, 'Despre noi')"><li>Despre noi</li></a>
+						<a class="tablinks" onclick="openDiv(event, 'Servicii')"><li>Servicii</li></a>
+						<a class="tablinks" onclick="openDiv(event, 'Contact')"><li>Contact</li></a>
+					<div style = "clear:both;"></div>
+					</ul>
+				</div>
+				
+							
+					<div id="Cauta" class="tabcontent">
+						<p class="try">Give it a try!</p><br>
+						<form action="/action_page.php">
+							<select id="idTipAnunt" name="tipAnunt" placeholder="Tip anunt">
+								<option value="vanzare">Vanzare</option>
+								<option value="inchiriere">Inchiriere</option>
+							  </select><br>
+						      <input type="text" id="idJudet" name="judet" placeholder="Judet"><br>
+							  <input type="text" id="idOras" name="oras" placeholder="Oras"><br>
+							  <input type="text" id="idZona" name="zona" placeholder="Zona"><br>
+							  <input type="number" id="idNrCamere" name="nrCamere" placeholder="Numar camere"><br>
+							  <input type="number" id="idEtaj" name="etaj" placeholder="Etaj"><br>
+							  <input type="number" id="idSuprafata" name="suprafataDeLa" placeholder="Suprafata (de la..)">
+							  <input type="number" id="idSuprafata" name="suprafataLa" placeholder="Suprafata (pana la..)"><br>
+							  <input type="number" id="idPret" name="pret" placeholder="Pret (de la..)">
+							  <input type="number" id="idPret" name="pret" placeholder="Pret (pana La ..)"><br>
+		       				  <input type="submit" value="Cauta">
+						</form>
+					</div>
+
+					<div id="Vezi anunturi" class="tabcontent">
+							<?php function createConnection()
+	{
+			$serverName = "localhost";
+			$userName = "Vitomir Dragan";
+			$password = "1234";
+			$dbName = "housesdatabase";
+	
+		$conn =  mysqli_connect($serverName, $userName, $password, $dbName);
+	
+		if($conn->connect_error){
+			die("Connection failed: " . $conn->connect_error);
+		}
+		return $conn;
+	}
+	
+	function getHouse()
+	{
+		$connection = createConnection();
+			$sql = "SELECT * FROM housestable";
+			$result=$connection->query($sql);
+			$resultText="";
+			
+			if($result->num_rows>0){
+				while($row = $result->fetch_assoc()){
+					$resultText .= $row['Nume'] . "<br>";
+				}
+			}
+			
+		$connection->close();
+		return $resultText;
+	}
+	
+	
+?>
+							
+							<p id="anything"></p>
+							
+							<script>
+								function giveHouses(houseString)
+								{
+									document.getElementById("anything").innerHTML = houseString;
+								}
+							</script>
+								     <script>
+				giveHouses("illes");
+		 </script>
+							
+					</div>
+
+					<div id="Servicii" class="tabcontent">
+							<h1>Servicii</h1>
+								<p>Furnizam servicii de consultanta si intermediere imobiliara in interesul beneficiarilor in vederea vanzarii-cumpararii sau in vederea inchirierii de imobile. Comisionul de intermediere imobiliara practicat de agentie este 3% &nbsp;calculat din valoarea tranzactiei pentru vanzarea sau cumpararea de imobile si terenuri, respectiv 50% din valoarea unei chirii lunare pentru inchirieri. Comisionul se datoreaza agentiei doar in cazul incheierii contractului de vanzare-cumparare sau a unui alt act de transfer al proprietatii sau in cazul incheierii unui contract de inchiriere. Cuantumul comisionului se poate negocia in cazul intermedierii imobilelor cu valoare mare sau in alte situatii speciale</p>
+							<h3>Servicii de intermediere imobiliara pentru vanzare si inchiriere imobile</h3>
+							<p>Preluam de la prorietari diverse tipuri de imobile pe care le promovam in vederea vanzarii sau inchirierii.Principalele tipuri de imobile de care ne ocupam sunt: apartamente, garsoniere, case, vile, spatii comerciale, spatii industriale, spatii pentru birouri, terenuri, hoteluri, pensiuni</p>
+							<p>Serviciul de intermediere imobiliara are loc in baza unui contract de intermediere imobiliara pentru vanzare sau inchiriere incheiat intre propriatar si agentie</p>
+							<p>In esenta, obiectul contractului il reprezinta serviciul de intermediere imobiliara prestat de agentie in interesul beneficiarului. In cazul in care agentia identifica un cumparator care accepta si cumpara oferta acestuia, beneficiarul va plati agentiei comisionul in cuantumul prevazut in contract</p>
+							<p>Pentru realizarea contractului agentia intreprinde pe cheltuiala sa demersuri specifice de publicitate si promovare imobiliara a ofertei</p>
+							<p>Inregistram pe formulare specifice agentiei toate informatiile si detaliile necesare unei evaluari obiective a pretului si pentru promovarea acestuia</p>
+							<p>Identificam si comunicam proprietarului avantajele si dezavantajele imobilului, comparativ cu alte oferte pe care le avem deja spre vanzare</p>
+							<p>Toate ofertele imobiliare preluate de noi in vederea vanzarii sau inchirierii sunt prezentate pe site cu poze relevante</p>
+							<p>Publicam oferta pe site-ul nostru si pe cele mai importante site-uri cu specific imobiliar imobiliare.ro, piata-az.ro, olx.ro si altele</p>
+							<p>Oferim beneficiarului consultanta si asistenta pentru finalizarea vanzarii si incheierea actelor de transfer ale proprietatii, sau a contractului de inchiriere</p>
+							<p>In cazul in care se doreste incheierea unui antecontract de vanzare-cumparare agentia va elabora si redacta acest act in conditiile stabilite de comun acord de beneficiar si potentialul cumparator</p>
+							<h3>Servicii de intermediere imobiliara pentru cumparare si inchiriere imobile</h3>
+							<p>Prestam serviciul de intermediere imobiliara in interesul beneficiarului (cumparator sau chirias) in schimbul platii comisionului</p>
+							<p>Serviciul consta in identificarea unor proprietati imobiliare sau terenuri care sa corespunda cererii beneficiarului, in vederea incheierii unui act de transfer al dreptului de proprietate sau a unui contract de inchiriere</p>
+							<p>Agentia face selectia proprietatilor imobiliare si a terenurilor compatibile cu cererea beneficiarilor</p>
+							<p>Prezentam beneficiarilor informatii din baza proprie de date despre preturile practicate pe piata pentru tipul de imobil solicitat</p>
+							<p>Elaboram si sa redactam antecontracte de vanzare-cumparare in conditiile stabilite de comun acord intre vanzator si cumparator</p>
+							<p>Oferim beneficiarilor consultanta si asistenta pentru finalizarea cumpararii si incheierea contractului de vanzare-cumparare in forma autentica la notar sau a contractului de inchiriere</p>
+							<p>Oferim beneficiarului informatiile pe care le detinem, sau pe care in mod rezonabil le cunoastem despre: caracteristicile generale ale imobilului, care pot influenta decizia de cumparare, incluzand nivelul de finisare, dimensiuni, vechime si pozitionarea fata de punctele cardinale; posibilele avantaje sau dezavantaje ale zonei si vecinatatii imobilului.</p>
+					</div>
+
+					<div id="Despre noi" class="tabcontent">
+						   <h1 class="page-title">Despre Noi</h1>
+		                   <p>Poate ai auzit de noi. Poate de la un prieten care si-a vandut casa cu ajutorul nostru, sau poate de la o cunostinta care nu reusea sa isi vanda apartamentul de luni bune si apeland la noi a reusit intr-un timp foarte scurt. Sau poate de la o ruda care dorea sa isi cumpere locuinta la care visa si venind la noi, i-am transformat visul in realitate. Sau poate un coleg de la job ti-a spus ca multumita noua a gasit chirie avantajoasa intr-un imobil situat aproape de locul de munca. Sau poate din presa scrisa sau audio-vizuala unde au fost relatate marile tranzactii imobiliare pe care le-am intermediat.</p>
+
+							<p>Sigur ai auzit de noi pentru ca avem in portofoliul nostru cele mai multe proprietati aflate in procesul de vanzare sau inchiriere. Sigur ai auzit de noi pentru ca suntem cea mai puternica agentie imobiliara, fiind prezenti pe toate portalele importante de imobiliare si cea mai simpla cautare online duce la noi.</p>
+
+							<p>Sau poate nu ai auzit de noi, sunt sanse sa nu fi auzit, tinand cont ca majoritatea romanilor fac cel mult doua tranzactii imobiliare in toata viata. Poate nu stii ca an de an compania noastra a obtinut cele mai importante premii si numeroase distinctii in acest domeniu.</p>
+
+							<p>Dar cel mai important este sa stii ca te putem ajuta atunci cand vei dori sa tranzactionezi o proprietate imobiliara punand la dispozitia ta serviciile noastre care pozitioneaza in centru nevoile tale.</p>
+					</div>
+					
+					<div id="Contact" class="tabcontent">
+						<h1>Cum ne puteti gasi?</h1>
+						<p>Pentru a putea fi gasiti mai usor, va punem la dispozitie datele noastre de contact. Putem fi gasiti la sediul nostru din Timisoara, dar si prin telefon, email si FAX</p>
+						<h3>Adresa: Timisoara, str. Surorile Martir Caceu, nr. 27</h3>
+						<h3>Telefon: 0727857611</h3>
+						<h3>Email: imo.home@yahoo.com</h3>
+						<h3>FAX: +44 261 939 9878</h3>
+						<center>
+						<iframe width="750" height="600" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Strada%20Surorile%20Martir%20Caceu%2C%20Timi%C8%99oara%2C%20Romania%2027&key=AIzaSyD8dIh_8eXjKFwF7zB-iliL4WIUH4UmW4Y" allowfullscreen></iframe>
+						</center>
+					</div>
+					
+					<div id="Adauga anunt" class="tabcontent">
+					<!--	<form action="/action_page.php"> !-->
+							<select id="idTipAnunt" name="tipAnunt" placeholder="Tip anunt">
+								<option value="vanzare">Vanzare</option>
+								<option value="inchiriere">Inchiriere</option>
+							  </select><br>
+						      <input type="text" id="idJudet" name="judet" placeholder="Judet"><br>
+							  <input type="text" id="idOras" name="oras" placeholder="Oras"><br>
+							  <input type="text" id="idZona" name="zona" placeholder="Zona"><br>
+							  <input type="number" id="idNrCamere" name="nrCamere" placeholder="Numar camere"><br>
+							  <input type="number" id="idEtaj" name="etaj" placeholder="Etaj"><br>
+							  <input type="number" id="idSuprafata" name="suprafataDeLa" placeholder="Suprafata (de la..)">
+							  <input type="number" id="idSuprafata" name="suprafataLa" placeholder="Suprafata (pana la..)"><br>
+							  <input type="number" id="idPret" name="pret" placeholder="Pret (de la..)">
+							  <input type="number" id="idPret" name="pret" placeholder="Pret (pana La ..)"><br>
+							  <input type="text" class="classDescriere" name="descriere" placeholder="Descriere .."><br>
+		       				  <input type="submit" value="Adauga"> 
+					</div>
+				
+					</div>		
+			<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+			</div>	
+	</body>
+</html>
